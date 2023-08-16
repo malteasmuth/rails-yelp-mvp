@@ -10,13 +10,20 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @review = Review.new
+  end
+
+  def review
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.save
-
-    redirect_to restaurant_path(@restaurant)
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      redirect_to new_restaurant_path
+    end
   end
 
   private
