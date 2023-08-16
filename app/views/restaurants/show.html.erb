@@ -1,22 +1,42 @@
-<div class="container mt-5">
-  <h2>Visit <%= @restaurant.name %></h2>
-  <h2>Adress: <%= @restaurant.address %><h2>
-  <h2>Serves <%= @restaurant.category %> food</h2>
+<div class="navbar navbar-dark bg-light d-flex text-align-center">
+  <%= link_to "back", restaurants_path, class: "btn btn-danger" %>
+  <%= link_to "Add a restaurant!", new_restaurant_path, class: "btn btn-secondary"%>
 </div>
+  <div class="container mt-5">
+    <div class="container mt-5">
+      <div class="card review-card mt-5">
+        <h2><strong><%= @restaurant.name %></strong></h2>
+        <h3>The <%= @restaurant.category %> restaurant</h2>
+        <h4><strong>Adress: </strong><%= @restaurant.address %><h2>
+        <h4><strong>Phone: </strong><%= @restaurant.phone_number %><h2>
+      </div>
+    </div>
 
-</div class="container mt-5">
-  <h2>Leave a review</h2>
-    <%= simple_form_for [@restaurant, @review] do |f| %>
-      <%= f.input :content %>
-      <%= f.input :rating %>
-      <%= f.submit "Submit review", class: "btn btn-primary" %>
-    <% end %>
-</div>
-
-<div class="container mt-5">
-  <h2>Reviews</h2>
-  <% @restaurant.reviews.each do  | review |%>
-    <p><%= review.content %></p>
-  <%end %>
-  <%= link_to "back", restaurants_path, class: "btn btn-primary" %>
+    <div class="container mt-5">
+      <div class="card review-card mt-5">
+        <h2>Leave a review</h2>
+          <%= simple_form_for [@restaurant, @review] do |f| %>
+            <%= f.input :content %>
+            <%= f.input :rating %>
+            <%= f.submit "Submit review", class: "btn btn-primary" %>
+          <% end %>
+      </div>
+    </div>
+    <div class="container mt-5">
+        <% if @restaurant.reviews.empty? %>
+          <div class="card review-card mb-5 d-flex items-align-center">
+            <h2>Reviews</h2>
+            <p><%= "No reviews yet"%></p>
+          </div>
+        <% else %>
+            <h2>Reviews</h2>
+            <% @restaurant.reviews.each do  | review |%>
+            <div class="card review-card">
+              <p><%= review.content %></p>
+              <p><%= review.rating %>/5 stars</p>
+            </div>
+          <%end %>
+        <%end%>
+      </div>
+  </div>
 </div>

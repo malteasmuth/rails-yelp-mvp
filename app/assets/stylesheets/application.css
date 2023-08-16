@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+ .cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 45;
+ }
+
+.restaurant-card {
+  border-radius: 10px;
+  padding: 5px;
+  align-items: center;
+  background-color: whitesmoke;
+  box-shadow: -1px 1px 1px silver;
+}
+
+.review-card {
+  border-radius: 10px;
+  padding: 5px;
+  align-items: left;
+  background-color: whitesmoke;
+  box-shadow: -1px 1px 1px silver;
+  width: 900px;
+  margin-bottom: 5px;
+}
